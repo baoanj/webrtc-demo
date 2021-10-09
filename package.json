@@ -1,0 +1,16 @@
+{
+  "name": "webrtc-demo",
+  "version": "1.0.0",
+  "description": "A WebRTC Demo",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": ["webrtc"],
+  "author": "baoanj",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^4.2.0"
+  }
+}

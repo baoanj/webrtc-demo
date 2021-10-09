@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Socket WebRTC</title>
+  <style>
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      padding: 1em;
+      font-size: 16px;
+      --my-color: #5078ff;
+    }
+
+    .online {
+      text-align: center;
+      margin-bottom: 5px;
+    }
+
+    .talk {
+      margin-bottom: 10px;
+      overflow: hidden;
+    }
+
+    .talk video {
+      width: 50%;
+      float: left;
+    }
+
+    .whiteboard {
+      height: 200px;
+      margin-bottom: 10px;
+      position: relative;
+    }
+
+    .whiteboard::before {
+      content: '绘画';
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      color: #b4b4b4;
+      font-weight: bold;
+      z-index: -1;
+    }
+
+    #draw {
+      border: 1px solid var(--my-color);
+    }
+
+    .bar {
+      display: flex;
+    }
+
+    #msg {
+      flex: 1;
+      overflow: hidden;
+      height: 30px;
+      line-height: 30px;
+      font-size: 16px;
+      padding: 0 6px;
+      border: 1px solid var(--my-color);
+      outline: none;
+    }
+
+    #send {
+      flex-shrink: 0;
+      border: 1px solid var(--my-color);
+      background: var(--my-color);
+      color: #fff;
+      font-size: 16px;
+      height: 30px;
+      line-height: 30px;
+      padding: 0 10px;
+      outline: none;
+    }
+
+    .chat {
+      padding-left: 20px;
+    }
+
+    .start {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background: #fff;
+      z-index: 1;
+      padding: 1em;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    #room,
+    #join {
+      outline: none;
+      width: 100%;
+      font-size: 20px;
+      border: 2px solid var(--my-color);
+      border-radius: 50px;
+      padding: 10px 20px;
+    }
+
+    #join {
+      color: #fff;
+      background: var(--my-color);
+      margin-top: 20px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="start">
+    <input id="room" type="text" placeholder="请输入房间号">
+    <button id="join">加入</button>
+  </div>
+  <div class="online">
+    <span id="count">0</span>人在线
+  </div>
+  <div class="talk">
+    <video id="local-video" autoplay muted></video>
+  </div>
+  <div class="whiteboard">
+    <canvas id="draw"></canvas>
+  </div>
+  <div class="bar">
+    <input id="msg" type="text" placeholder="聊天">
+    <button id="send">发送</button>
+  </div>
+  <ul class="chat"></ul>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/main.js"></script>
+</body>
+
+</html>
